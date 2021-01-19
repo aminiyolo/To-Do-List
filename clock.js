@@ -28,12 +28,48 @@ function getTime(){
     ${hour < 10 ? `0${hour}`: hour}:${
     minute < 10 ? `0${minute}`:minute}:${
     second < 10 ? `0${second}`: second}`
+};
+
+// Make a greeting
+const nameForm = document.querySelector(".nameForm");
+const nameInput = document.querySelector("input");
+const greeting = document.querySelector(".greeting");
+const user = "Name";
+const invisible ="invisible";
+
+function paintText(name){
+    greeting.innerText = `Hello ${name}! \n What is your main focus?`
 }
+
+function handleSubmit(event){
+    event.preventDefault();
+    nameForm.classList.add(invisible);
+    greeting.classList.remove(invisible);
+    const name = nameInput.value;
+    localStorage.setItem(user, name);
+    paintText(name);
+};
+
+function loadName(){
+    const name = localStorage.getItem(user);
+    nameForm.classList.add(invisible);
+    greeting.classList.remove(invisible);
+    paintText(name);
+};
+
+function getName(){
+    const currentUser = localStorage.getItem(user)
+    if(currentUser !== null){
+        loadName();
+    } 
+};
 
 function init(){
     getDate();
     getTime();
     setInterval(getTime, 1000);
-}
+    getName();
+    nameForm.addEventListener("submit", handleSubmit);
+};
 init();
 
