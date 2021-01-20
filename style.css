@@ -29,6 +29,7 @@ body {
   letter-spacing: var(--letter-spacing);
   font-size: var(--font-small);
   font-weight: var(--font-weight);
+  color: var(--color-white);
 }
 
 .clock__container {
@@ -38,6 +39,7 @@ body {
   font-size: var(--font-medium);
   letter-spacing: var(--letter-spacing);
   font-weight: var(--font-weight);
+  color: var(--color-white);
 }
 
 /* Input */
@@ -45,21 +47,24 @@ body {
   text-align: center;
   width: 50%;
   margin: auto;
-  margin-top: 70px;
+  margin-top: 90px;
 }
 
 input {
   border: none;
   outline: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--color-white);
   width: 90%;
   transition: all var(--ani-duration) ease-out;
   text-align: center;
+  color: var(--color-white);
+  background-color: transparent;
 }
 
 input[type="text"] {
   font-family: inherit;
   font-size: var(--font-large);
+  color: var(--color-white);
 }
 
 input:focus {
@@ -70,6 +75,10 @@ input:focus::placeholder {
   color: transparent;
 }
 
+::placeholder {
+  color: var(--color-white);
+}
+
 .greeting {
   margin-top: 50px;
   text-align: center;
@@ -78,4 +87,24 @@ input:focus::placeholder {
 
 .invisible {
   display: none;
+}
+
+/* Background image */
+.bg__image {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: all var(--ani-duration) ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -36,7 +36,6 @@ const greeting = document.querySelector(".greeting");
 const user = "Name";
 const invisible ="invisible";
 
-console.log(nameForm);
 function paintText(name){
     greeting.innerText = `Hello ${name}! \n What is your main focus?`
 }
@@ -65,8 +64,15 @@ function getName(){
 };
 
 // Get random background image
-const body = document.querySelector("body");
-console.log(body);
+const body = document.querySelector("body");    
+
+function getBackground(){
+    const image = new Image();
+    const number = Math.floor(Math.random()*4) + 1;
+    image.src = `imgs/bg${number}.jpg`;
+    image.classList.add("bg__image");
+    body.prepend(image);
+};
 
 function init(){
     getDate();
@@ -74,6 +80,6 @@ function init(){
     setInterval(getTime, 1000);
     getName();
     nameForm.addEventListener("submit", handleSubmit);
+    getBackground();
 };
 init();
-
