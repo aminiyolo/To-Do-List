@@ -3,7 +3,6 @@
 // display clock (current date and time)
 const dateContainer = document.querySelector(".date__container");
 const clockContainer = document.querySelector(".clock__container");
-
 const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 function getDate(){
@@ -31,12 +30,13 @@ function getTime(){
 };
 
 // Make a greeting
-const nameForm = document.querySelector(".nameForm");
+const nameForm = document.querySelector(".name__form");
 const nameInput = document.querySelector("input");
 const greeting = document.querySelector(".greeting");
 const user = "Name";
 const invisible ="invisible";
 
+console.log(nameForm);
 function paintText(name){
     greeting.innerText = `Hello ${name}! \n What is your main focus?`
 }
@@ -63,6 +63,10 @@ function getName(){
         loadName();
     } 
 };
+
+// Get random background image
+const body = document.querySelector("body");
+console.log(body);
 
 function init(){
     getDate();

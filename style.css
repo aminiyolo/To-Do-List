@@ -1,3 +1,81 @@
+:root {
+  /* Color */
+  --color-white: white;
+
+  /* Animation duration  */
+  --ani-duration: 300ms;
+
+  /* Font size */
+  --font-large: 32px;
+  --font-medium: 28px;
+  --font-small: 24px;
+
+  /* Lettet spacing */
+  --letter-spacing: 2px;
+
+  /* Font weight */
+  --font-weight: 500;
+}
+
+/* Font */
+body {
+  font-family: "Quicksand", sans-serif;
+}
+
+/* Clock */
+.date__container {
+  margin: 5px 10px 0px 0px;
+  text-align: right;
+  letter-spacing: var(--letter-spacing);
+  font-size: var(--font-small);
+  font-weight: var(--font-weight);
+}
+
+.clock__container {
+  text-align: right;
+  margin-top: 5px;
+  margin-right: 10px;
+  font-size: var(--font-medium);
+  letter-spacing: var(--letter-spacing);
+  font-weight: var(--font-weight);
+}
+
+/* Input */
+.name__form {
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  margin-top: 70px;
+}
+
+input {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid black;
+  width: 90%;
+  transition: all var(--ani-duration) ease-out;
+  text-align: center;
+}
+
+input[type="text"] {
+  font-family: inherit;
+  font-size: var(--font-large);
+}
+
+input:focus {
+  transform: translateY(5px);
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.greeting {
+  margin-top: 50px;
+  text-align: center;
+  font-size: var(--font-large);
+}
+
 .invisible {
   display: none;
 }
