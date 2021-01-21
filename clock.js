@@ -29,7 +29,7 @@ function getTime(){
     second < 10 ? `0${second}`: second}`
 };
 
-// Make a greeting
+// Make a greeting 
 const nameForm = document.querySelector(".name__form");
 const nameInput = document.querySelector("input");
 const greeting = document.querySelector(".greeting");
@@ -64,7 +64,7 @@ function loadName(){
     } 
 };
 
-// Get random background image
+// display random background image
 const body = document.querySelector("body");    
 
 function getBackground(){
@@ -75,7 +75,7 @@ function getBackground(){
     body.prepend(image);
 };
 
-// Make a to do list
+// Make a to do list and delete button with delete function 
 const listForm = document.querySelector(".list__form");
 const listInput = document.querySelector(".list__input");
 const listOutput = document.querySelector(".todo__list");
@@ -127,13 +127,43 @@ function handleListSubmit(event){
 
 function loadList(){
     const list = localStorage.getItem(toDo);
-    if(list != null) {
+    if(list !== null) {
         const parsedList = JSON.parse(list);
         parsedList.forEach((list) => {
             writeList(list.text);
         });
     }
 };  
+
+// Get latitude and longitude and save them
+const coords = "Coords"
+
+function handleGeoSuccess(position){
+    const longitude = position.coords.longitude;
+    const latitude = position.coords.latitude;
+    const coordsObj = {
+        longitude,
+        latitude
+    };
+    localStorage.setItem(coords, JSON.stringify(coordsObj));
+};
+
+function handleGeoError(){
+    window.alert("Can't access location");
+};
+
+function getLocation(){
+    navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoError)
+};
+
+function loadLocation(){
+    const location = localStorage.getItem(coords);
+    if(location === null) {
+        getLocation();
+    } else {
+        const parsedLocation = JSON.parse(location);        
+    }
+}; 
 
 function init(){
     getDate();
@@ -144,5 +174,6 @@ function init(){
     getBackground();
     loadList();
     listForm.addEventListener("submit", handleListSubmit)
+    loadLocation();
 };
 init();
