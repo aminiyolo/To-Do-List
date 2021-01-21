@@ -91,7 +91,7 @@ function deleteList(event){
     const target = event.target.parentNode;
     listOutput.removeChild(target);
     const newList = toDoLists.filter((list) => {
-        return list.id != target.id
+        return list.id !== parseInt(target.id)
     });
     toDoLists = newList;
     saveList();
@@ -129,20 +129,20 @@ function loadList(){
     const list = localStorage.getItem(toDo);
     if(list != null) {
         const parsedList = JSON.parse(list);
-        parsedList.forEach( (list) => {
+        parsedList.forEach((list) => {
             writeList(list.text);
         });
     }
-};
+};  
 
 function init(){
     getDate();
     getTime();
     setInterval(getTime, 1000);
     loadName();
+    nameForm.addEventListener("submit", handleSubmit);
     getBackground();
     loadList();
-    nameForm.addEventListener("submit", handleSubmit);
     listForm.addEventListener("submit", handleListSubmit)
 };
 init();

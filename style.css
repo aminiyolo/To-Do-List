@@ -8,7 +8,8 @@
   /* Font size */
   --font-large: 32px;
   --font-medium: 28px;
-  --font-small: 24px;
+  --font-small: 26px;
+  --font-micro: 16px;
 
   /* Lettet spacing */
   --letter-spacing: 2px;
@@ -121,7 +122,7 @@ input:focus::placeholder {
   margin-top: 55px;
 }
 
-.visible {
+.list__form.visible {
   display: block;
   margin: 40px 232px 0px 232px;
 }
@@ -133,7 +134,6 @@ input:focus::placeholder {
   margin-left: 250px;
   font-size: var(--font-small);
   overflow-y: auto;
-  overflow-x: auto;
   height: 260px;
   list-style: none;
   margin-bottom: 40px;
@@ -153,9 +153,13 @@ input:focus::placeholder {
 }
 
 li {
-  margin-bottom: 4px;
+  height: 32px;
 }
 
 button {
   margin-right: 7px;
+  background-color: transparent;
+  font-size: var(--font-micro);
+  outline: none;
+  border: none;
 }
