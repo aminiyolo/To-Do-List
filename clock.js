@@ -38,6 +38,7 @@ const invisible ="invisible";
 
 function paintText(name){
     greeting.innerText = `Hello ${name}! \n What is your main focus?`
+    listForm.classList.add("visible");
 }
 
 function handleSubmit(event){
@@ -49,17 +50,17 @@ function handleSubmit(event){
     paintText(name);
 };
 
-function loadName(){
+function getName(){
     const name = localStorage.getItem(user);
     nameForm.classList.add(invisible);
     greeting.classList.remove(invisible);
     paintText(name);
 };
 
-function getName(){
+function loadName(){
     const currentUser = localStorage.getItem(user)
     if(currentUser !== null){
-        loadName();
+        getName();
     } 
 };
 
@@ -74,12 +75,74 @@ function getBackground(){
     body.prepend(image);
 };
 
+// Make a to do list
+const listForm = document.querySelector(".list__form");
+const listInput = document.querySelector(".list__input");
+const listOutput = document.querySelector(".todo__list");
+const toDo = "The thing you should do";
+let toDoLists = [];
+let idNumbers = 1;
+
+function saveList(){
+    localStorage.setItem(toDo, JSON.stringify(toDoLists));
+};
+
+function deleteList(event){
+    const target = event.target.parentNode;
+    listOutput.removeChild(target);
+    const newList = toDoLists.filter((list) => {
+        return list.id != target.id
+    });
+    toDoLists = newList;
+    saveList();
+};
+
+function writeList(list){
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    const deletBtn = document.createElement("button");
+    const id = idNumbers;
+    li.id = id;
+    deletBtn.addEventListener("click", deleteList);
+    deletBtn.innerText = '❌';
+    span.innerText = list;
+    li.appendChild(deletBtn);
+    li.appendChild(span);
+    listOutput.appendChild(li);
+    const toDoObject = {
+        text : list,
+        id : id
+    }
+    idNumbers += 1;
+    toDoLists.push(toDoObject);
+    saveList();
+};
+
+function handleListSubmit(event){
+    event.preventDefault();
+    const value = listInput.value;
+    writeList(value);
+    listInput.value = "";
+};
+
+function loadList(){
+    const list = localStorage.getItem(toDo);
+    if(list != null) {
+        const parsedList = JSON.parse(list);
+        parsedList.forEach( (list) => {
+            writeList(list.text);
+        });
+    }
+};
+
 function init(){
     getDate();
     getTime();
     setInterval(getTime, 1000);
-    getName();
-    nameForm.addEventListener("submit", handleSubmit);
+    loadName();
     getBackground();
+    loadList();
+    nameForm.addEventListener("submit", handleSubmit);
+    listForm.addEventListener("submit", handleListSubmit)
 };
 init();

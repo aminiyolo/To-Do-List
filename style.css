@@ -82,7 +82,9 @@ input:focus::placeholder {
 .greeting {
   margin-top: 50px;
   text-align: center;
+  font-weight: 550;
   font-size: var(--font-large);
+  color: var(--color-white);
 }
 
 .invisible {
