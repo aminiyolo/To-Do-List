@@ -104,7 +104,7 @@ function writeList(list){
     const id = idNumbers;
     li.id = id;
     deletBtn.addEventListener("click", deleteList);
-    deletBtn.innerText = '❌';
+    deletBtn.innerText = '✔️';
     span.innerText = list;
     li.appendChild(deletBtn);
     li.appendChild(span);
@@ -135,17 +135,32 @@ function loadList(){
     }
 };  
 
-// Get latitude and longitude and save them
+// Get coords and weather
+const API_KEY = "be9792e78e14114cbec04b3a116017a7";
+const weatherContainer = document.querySelector(".weather__container");
 const coords = "Coords"
+
+function getWeather(latitude, longitude){
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`)
+    .then(response => {
+        return response.json();
+    })
+    .then(json => {
+        const temperature = Math.floor(json.main.temp);
+        const place = json.name;
+        weatherContainer.innerText =`${place} ' ${temperature}°C`;
+    });
+};
 
 function handleGeoSuccess(position){
     const longitude = position.coords.longitude;
     const latitude = position.coords.latitude;
-    const coordsObj = {
+    const coordsObject = {
         longitude,
         latitude
     };
-    localStorage.setItem(coords, JSON.stringify(coordsObj));
+    localStorage.setItem(coords, JSON.stringify(coordsObject));
+    getWeather(latitude, longitude);
 };
 
 function handleGeoError(){
@@ -161,7 +176,8 @@ function loadLocation(){
     if(location === null) {
         getLocation();
     } else {
-        const parsedLocation = JSON.parse(location);        
+        const parsedLocation = JSON.parse(location);
+        getWeather(parsedLocation.latitude, parsedLocation.longitude);
     }
 }; 
 
