@@ -6,7 +6,7 @@
   --ani-duration: 300ms;
 
   /* Font size */
-  --font-large: 32px;
+  --font-large: 34px;
   --font-medium: 28px;
   --font-small: 26px;
   --font-micro: 16px;
@@ -24,12 +24,16 @@ body {
   font-family: "Quicksand", sans-serif;
   overflow: hidden;
   margin: 0;
+  padding: 50px;
+  transition: all var(--ani-duration) ease-out;
 }
 
 /* Clock */
 .date__container {
-  margin: 10px 15px 0px 0px;
-  text-align: right;
+  position: absolute;
+  top: 7px;
+  right: 15px;
+  margin: 0;
   letter-spacing: var(--letter-spacing);
   font-size: var(--font-small);
   font-weight: var(--font-weight);
@@ -37,9 +41,9 @@ body {
 }
 
 .clock__container {
-  text-align: right;
-  margin-top: 3px;
-  margin-right: 15px;
+  position: absolute;
+  top: 9px;
+  right: 15px;
   font-size: var(--font-medium);
   letter-spacing: var(--letter-spacing);
   font-weight: var(--font-weight);
@@ -58,7 +62,7 @@ input {
   border: none;
   outline: none;
   border-bottom: 2px solid var(--color-white);
-  width: 90%;
+  width: 100%;
   transition: all var(--ani-duration) ease-out;
   text-align: center;
   color: var(--color-white);
@@ -86,10 +90,12 @@ input:focus::placeholder {
 
 .greeting {
   margin-top: 50px;
+  margin-bottom: 50px;
   text-align: center;
   font-weight: 550;
   font-size: var(--font-large);
   color: var(--color-white);
+  transition: var(--ani-duration);
 }
 
 .invisible {
@@ -119,21 +125,29 @@ input:focus::placeholder {
 /* To do list */
 .list__form {
   display: none;
-  text-align: center;
+  width: 50%;
   margin: auto;
   margin-top: 55px;
 }
 
 .list__form.visible {
   display: block;
-  margin: 40px 232px 0px 232px;
+  margin: auto;
+}
+
+.list__form input[type="text"] {
+  font-size: var(--font-large);
+}
+
+.list__form input::placeholder {
+  font-size: var(--font-small);
 }
 
 .todo__list {
-  text-align: left;
   color: var(--color-white);
-  margin-right: 270px;
+  margin-right: 250px;
   margin-left: 250px;
+  margin-top: 30px;
   font-size: var(--font-small);
   overflow-y: auto;
   height: 260px;
@@ -159,7 +173,6 @@ li {
 }
 
 button {
-  color: var(--color-white);
   margin-right: 7px;
   background-color: transparent;
   font-size: var(--font-micro);
@@ -174,4 +187,47 @@ button {
   bottom: 20px;
   right: 25px;
   color: var(--color-white);
+}
+
+/* For below 768px screen */
+@media screen and (max-width: 768px) {
+  body {
+    margin-top: 15px;
+  }
+
+  .date__container {
+    font-size: 2vw;
+  }
+
+  .clock__container {
+    font-size: 2.5vw;
+  }
+
+  .name__form input::placeholder {
+    font-size: 3.75vw;
+  }
+
+  .greeting {
+    font-size: 5vw;
+  }
+
+  .list__form input::placeholder {
+    width: 3vw;
+    font-size: 5vw;
+  }
+
+  .todo__list {
+    margin: auto;
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+  }
+
+  .todo__list span {
+    font-size: 3vw;
+  }
+
+  .weather__container {
+    font-size: 2vw;
+  }
 }

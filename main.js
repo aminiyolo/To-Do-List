@@ -37,7 +37,7 @@ const user = "Name";
 const invisible ="invisible";
 
 function paintText(name){
-    greeting.innerText = `Hello ${name}! \n What is your main focus?`
+    greeting.innerText = `Hello,     ${name}! \n What is your main focus for today?`
     listForm.classList.add("visible");
 }
 
