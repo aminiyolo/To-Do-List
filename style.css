@@ -35,7 +35,7 @@ body {
   right: 15px;
   margin: 0;
   letter-spacing: var(--letter-spacing);
-  font-size: var(--font-small);
+  font-size: calc(var(--font-small) * 0.8);
   font-weight: var(--font-weight);
   color: var(--color-white);
 }
@@ -44,7 +44,7 @@ body {
   position: absolute;
   top: 9px;
   right: 15px;
-  font-size: var(--font-medium);
+  font-size: var(--font-small);
   letter-spacing: var(--letter-spacing);
   font-weight: var(--font-weight);
   color: var(--color-white);
@@ -136,7 +136,7 @@ input:focus::placeholder {
 }
 
 .list__form input[type="text"] {
-  font-size: var(--font-large);
+  font-size: var(--font-small);
 }
 
 .list__form input::placeholder {
@@ -145,14 +145,23 @@ input:focus::placeholder {
 
 .todo__list {
   color: var(--color-white);
-  margin-right: 250px;
-  margin-left: 250px;
+  margin: auto;
   margin-top: 30px;
   font-size: var(--font-small);
   overflow-y: auto;
+  overflow-x: hidden;
   height: 260px;
+  width: 50%;
   list-style: none;
   margin-bottom: 40px;
+}
+
+.todo__list span {
+  font-size: var(--font-small);
+}
+
+.todo__list li {
+  display: flex;
 }
 
 .todo__list::-webkit-scrollbar {
